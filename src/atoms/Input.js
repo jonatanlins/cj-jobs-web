@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import InputMask from 'react-input-mask';
 
 function Atom({ label, multiline, ...props }) {
   return (
@@ -7,7 +8,14 @@ function Atom({ label, multiline, ...props }) {
       <span>
         {label} {props.required && ' *'}
       </span>
-      {multiline ? <textarea {...props} /> : <input {...props} />}
+
+      {props.mask ? (
+        <InputMask {...props} />
+      ) : multiline ? (
+        <textarea {...props} />
+      ) : (
+        <input {...props} />
+      )}
     </StyledWrapper>
   );
 }

@@ -23,11 +23,15 @@ function Page({ history }) {
         <h1>Cadastrar nova vaga</h1>
 
         <form onSubmit={handleSubmit}>
-          <Input label="Título" {...text('title')} />
-          <Input label="Empresa" {...text('company')} />
-          <Input label="Descrição da vaga" {...text('description')} />
-          <Input label="Salário" {...number('salary')} />
-          <Input label="Carga horária semanal" {...number('workload')} />
+          <Input label="Título" required {...text('title')} />
+          <Input label="Empresa" required {...text('company')} />
+          <Input label="Descrição da vaga" required {...text('description')} />
+          <Input label="Salário" required {...number('salary')} />
+          <Input
+            label="Carga horária semanal"
+            required
+            {...number('workload')}
+          />
 
           <button>Cadastrar</button>
         </form>

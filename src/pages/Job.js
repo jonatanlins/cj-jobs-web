@@ -41,9 +41,14 @@ function Page({ match, history }) {
           <h2>Inscreva-se para essa vaga</h2>
 
           <Input label="Nome" {...text('name')} required />
-          <Input label="CPF" {...text('cpf')} required />
+          <Input label="CPF" {...text('cpf')} mask="999.999.999-99" required />
           <Input label="Data de nascimento" {...date('birthDate')} required />
-          <Input label="Telefone" {...text('phone')} required />
+          <Input
+            label="Telefone"
+            {...text('phone')}
+            mask="(99) 999999999"
+            required
+          />
           <Input label="Email" {...email('email')} required />
           <Input
             label="Formação acadêmica"
