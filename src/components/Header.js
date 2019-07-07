@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import StickPaper from '../atoms/StickPaper';
 
-function Board({ content, history }) {
+function Header({ content, history }) {
   const redirect = to => () => {
     history.push(to);
   };
@@ -80,4 +80,4 @@ const styles = {
   `,
 };
 
-export default withRouter(Board);
+export default withRouter(Header);
