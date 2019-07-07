@@ -4,13 +4,13 @@ import { withRouter } from 'react-router-dom';
 
 import StickPaper from '../atoms/StickPaper';
 
-function Board({ content, history }) {
+function Board({ content, history, className }) {
   const redirect = to => () => {
     history.push(to);
   };
 
   return (
-    <styles.Frame>
+    <styles.Frame className={className}>
       <styles.Background>
         {content.map(({ id, title, company, to }, index) => (
           <styles.StickPaper

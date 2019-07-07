@@ -3,11 +3,7 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { useFormState } from 'react-use-form-state';
 
-import H1 from '../atoms/H1';
-import H2 from '../atoms/H2';
-import H3 from '../atoms/H3';
-import Paragraph from '../atoms/Paragraph';
-import Button from '../atoms/Button';
+import Shell from '../components/Shell';
 import Input from '../atoms/Input';
 
 function Page({ match, history }) {
@@ -27,32 +23,77 @@ function Page({ match, history }) {
   };
 
   return (
-    <StyledWrapper>
-      <H1>CJ Jobs</H1>
+    <Shell>
+      <StyledWrapper>
+        <h2>{job.title}</h2>
+        <h3>{job.company.name}</h3>
+        <p>
+          <b>Salário:</b> R$ {job.salary.toFixed(2).replace('.', ',')}
+        </p>
+        <p>
+          <b>Carga horária:</b> {job.workload} horas semanais
+        </p>
+        <p>
+          <b>Descrição:</b> {job.description}
+        </p>
 
-      <H2>{job.title}</H2>
-      <H3>{job.company.name}</H3>
-      <Paragraph>{job.description}</Paragraph>
+        <form onSubmit={handleSubscription}>
+          <h2>Inscreva-se para essa vaga</h2>
 
-      <form onSubmit={handleSubscription}>
-        <H2>Inscreva-se</H2>
+          <Input label="Nome" {...text('name')} required />
+          <Input label="CPF" {...text('cpf')} required />
+          <Input label="Data de nascimento" {...date('birthDate')} required />
+          <Input label="Telefone" {...text('phone')} required />
+          <Input label="Email" {...email('email')} required />
+          <Input
+            label="Formação acadêmica"
+            {...text('academicFormation')}
+            multiline
+            required
+          />
+          <Input
+            label="Sua história"
+            {...text('descriction')}
+            multiline
+            required
+          />
 
-        <Input label="Nome" {...text('name')} />
-        <Input label="CPF" {...text('cpf')} />
-        <Input label="Data de nascimento" {...date('birthDate')} />
-        <Input label="Telefone" {...text('phone')} />
-        <Input label="Email" {...email('email')} />
-        <Input label="Formação acadêmica" {...text('academicFormation')} />
-        <Input label="Sua história" {...text('descriction')} />
-
-        <Button>Enviar</Button>
-      </form>
-    </StyledWrapper>
+          <button>Inscrever-se</button>
+        </form>
+      </StyledWrapper>
+    </Shell>
   );
 }
 
 const StyledWrapper = styled.div`
-  padding: 0 10%;
+  h2 {
+    font-weight: 400;
+    font-size: 1.75em;
+  }
+
+  h3 {
+    color: #123b72;
+    margin: 1em 0 1.5em;
+    font-weight: 700;
+    line-height: 150%;
+  }
+
+  button {
+    cursor: pointer;
+    background-color: #123b72;
+    color: white;
+    line-height: 3;
+    padding: 0 2em;
+    text-transform: uppercase;
+    font-size: 1em;
+    border: none;
+    border-radius: 4px;
+    box-shadow: none;
+  }
+
+  form {
+    max-width: 30em;
+  }
 `;
 
 export default Page;

@@ -7,6 +7,8 @@ const initialState = {
         id: 'Smart Labs',
         name: 'Smart Labs',
       },
+      salary: 1500,
+      workload: 60,
       description:
         'bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ',
     },
@@ -17,6 +19,8 @@ const initialState = {
         id: 'Manna Digital',
         name: 'Manna Digital',
       },
+      salary: 850,
+      workload: 40,
       description:
         'bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ',
     },
@@ -27,6 +31,8 @@ const initialState = {
         id: 'Comeia',
         name: 'Comeia',
       },
+      salary: 0,
+      workload: 60,
       description:
         'bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ',
     },
@@ -37,36 +43,8 @@ const initialState = {
         id: 'UPE',
         name: 'UPE',
       },
-      description:
-        'bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ',
-    },
-    {
-      id: '04g5r4hg6t',
-      title: 'Professor',
-      company: {
-        id: 'UPE',
-        name: 'UPE',
-      },
-      description:
-        'bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ',
-    },
-    {
-      id: '05g5r4hg6t',
-      title: 'Professor',
-      company: {
-        id: 'UPE',
-        name: 'UPE',
-      },
-      description:
-        'bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ',
-    },
-    {
-      id: '06g5r4hg6t',
-      title: 'Professor',
-      company: {
-        id: 'UPE',
-        name: 'UPE',
-      },
+      salary: 15000,
+      workload: 80,
       description:
         'bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ',
     },

@@ -2,10 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useFormState } from 'react-use-form-state';
 
-import H1 from '../atoms/H1';
-import H2 from '../atoms/H2';
-import Button from '../atoms/Button';
 import Input from '../atoms/Input';
+import Shell from '../components/Shell';
 
 function Page({ history }) {
   const [formState, { text, number }] = useFormState();
@@ -20,26 +18,53 @@ function Page({ history }) {
   };
 
   return (
-    <StyledWrapper>
-      <H1>CJ Jobs</H1>
+    <Shell>
+      <StyledWrapper>
+        <h1>Cadastrar nova vaga</h1>
 
-      <form onSubmit={handleSubmit}>
-        <H2>Cadastrar nova vaga</H2>
+        <form onSubmit={handleSubmit}>
+          <Input label="Título" {...text('title')} />
+          <Input label="Empresa" {...text('company')} />
+          <Input label="Descrição da vaga" {...text('description')} />
+          <Input label="Salário" {...number('salary')} />
+          <Input label="Carga horária semanal" {...number('workload')} />
 
-        <Input label="Título" {...text('title')} />
-        <Input label="Empresa" {...text('company')} />
-        <Input label="Descrição da vaga" {...text('description')} />
-        <Input label="Salário" {...number('salary')} />
-        <Input label="Carga horária semanal" {...number('workload')} />
-
-        <Button>Enviar</Button>
-      </form>
-    </StyledWrapper>
+          <button>Cadastrar</button>
+        </form>
+      </StyledWrapper>
+    </Shell>
   );
 }
 
 const StyledWrapper = styled.div`
-  padding: 0 10%;
+  h1 {
+    font-weight: 400;
+    font-size: 1.75em;
+  }
+
+  h2 {
+    color: #123b72;
+    margin: 1em 0 1.5em;
+    font-weight: 700;
+    line-height: 150%;
+  }
+
+  button {
+    cursor: pointer;
+    background-color: #123b72;
+    color: white;
+    line-height: 3;
+    padding: 0 2em;
+    text-transform: uppercase;
+    font-size: 1em;
+    border: none;
+    border-radius: 4px;
+    box-shadow: none;
+  }
+
+  form {
+    max-width: 30em;
+  }
 `;
 
 export default Page;

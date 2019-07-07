@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import Shell from '../components/Shell';
 import Board from '../components/Board';
-import H1 from '../atoms/H1';
 
 function Page() {
   const jobs = useSelector(state => [
@@ -20,18 +20,47 @@ function Page() {
   ]);
 
   return (
-    <StyledWrapper>
-      <H1>CJ Jobs</H1>
+    <Shell>
+      <StyledWrapper>
+        <Board content={jobs} className="board" />
 
-      <Link to="/jobs/new">Adicionar vaga</Link>
-
-      <Board content={jobs} />
-    </StyledWrapper>
+        <div className="row">
+          <span>Você tem uma empresa?</span>
+          <Link to="/jobs/new">Publique uma vaga</Link>
+        </div>
+      </StyledWrapper>
+    </Shell>
   );
 }
 
 const StyledWrapper = styled.div`
-  padding: 0 10%;
+  .board {
+    margin: 2em 0;
+  }
+
+  .row {
+    line-height: 3;
+    text-align: center;
+
+    span {
+      font-size: 1.5em;
+      margin-right: 1em;
+    }
+
+    a {
+      font-size: 1em;
+      cursor: pointer;
+      background-color: #123b72;
+      color: white;
+      padding: 0 2em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 4px;
+      box-shadow: none;
+      text-decoration: none;
+      display: inline-block;
+    }
+  }
 `;
 
 export default Page;
