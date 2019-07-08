@@ -31,7 +31,8 @@ function Page({ history }) {
 
         <form onSubmit={handleSubmit}>
           <Input label="Título" required {...text('nome')} />
-          <select {...select('cnpj')}>
+          <span>Empresa *</span>
+          <select {...select('cnpj')} required>
             {contratantes.map(({ nome, cnpj }) => (
               <option value={cnpj}>{nome}</option>
             ))}
@@ -57,11 +58,25 @@ const StyledWrapper = styled.div`
     font-size: 1.75em;
   }
 
+  span {
+    color: #555;
+  }
+
   h2 {
     color: #123b72;
     margin: 1em 0 1.5em;
     font-weight: 700;
     line-height: 150%;
+  }
+
+  select {
+    width: 100%;
+    border: 1px solid #555;
+    font-size: 1em;
+    line-height: 2;
+    padding: 0 1em;
+    border-radius: 4px;
+    height: 34px;
   }
 
   button {
