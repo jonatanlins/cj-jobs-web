@@ -12,14 +12,14 @@ function Board({ content, history, className }) {
   return (
     <styles.Frame className={className}>
       <styles.Background>
-        {content.map(({ id, title, company, to }, index) => (
+        {content.map(({ id, nome, company, to }, index) => (
           <styles.StickPaper
             key={id}
             className={`i-${index}`}
             onClick={redirect(to)}
           >
-            <p>{title}</p>
-            <p>{company.name}</p>
+            <p>{nome}</p>
+            <p>{company}</p>
           </styles.StickPaper>
         ))}
       </styles.Background>

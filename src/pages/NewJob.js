@@ -1,18 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useFormState } from 'react-use-form-state';
+import { useSelector } from 'react-redux';
 
 import Input from '../atoms/Input';
 import Shell from '../components/Shell';
+import api from '../services/api';
 
 function Page({ history }) {
-  const [formState, { text, number }] = useFormState();
+  const [formState, { text, number, select }] = useFormState();
+
+  const contratantes = useSelector(state => state.contratantes);
 
   const handleSubmit = event => {
     event.preventDefault();
 
     if (window.confirm('Você deseja salvar?')) {
-      alert('Vaga cadastrada com sucesso!');
+      api.post('/vagas', formState.values).then(() => {
+        alert('Vaga cadastrada com sucesso!');
+      });
+
       history.push('/');
     }
   };
@@ -23,14 +30,18 @@ function Page({ history }) {
         <h1>Cadastrar nova vaga</h1>
 
         <form onSubmit={handleSubmit}>
-          <Input label="Título" required {...text('title')} />
-          <Input label="Empresa" required {...text('company')} />
-          <Input label="Descrição da vaga" required {...text('description')} />
-          <Input label="Salário" required {...number('salary')} />
+          <Input label="Título" required {...text('nome')} />
+          <select {...select('cnpj')}>
+            {contratantes.map(({ nome, cnpj }) => (
+              <option value={cnpj}>{nome}</option>
+            ))}
+          </select>
+          <Input label="Descrição da vaga" required {...text('descricao')} />
+          <Input label="Salário" required {...number('salario')} />
           <Input
             label="Carga horária semanal"
             required
-            {...number('workload')}
+            {...number('cargaHoraria')}
           />
 
           <button>Cadastrar</button>

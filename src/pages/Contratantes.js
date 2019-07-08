@@ -1,40 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Shell from '../components/Shell';
 
-function Page({ history, match }) {
-  const jobs = useSelector(state => state.jobs);
+function Page() {
   const contratantes = useSelector(state => state.contratantes);
-
-  const redirect = id => () => {
-    history.push(`/jobs/${id}`);
-  };
 
   return (
     <Shell>
       <StyledWrapper>
-        <h1>Todas as vagas de emprego</h1>
+        <div className="row">
+          <h1>Contratantes</h1>
+
+          <Link to="/contratantes/new">Adicionar novo</Link>
+        </div>
 
         <ul>
-          {jobs.map(({ id, nome, cnpj, descricao, salario, cargaHoraria }) => (
-            <li key={id}>
+          {contratantes.map(({ cnpj, nome, email, telefone }) => (
+            <li key={cnpj}>
               <h3>{nome}</h3>
               <p>
-                <b>Empresa:</b> {contratantes.find(c => c.cnpj === cnpj).nome}
+                <b>CNPJ:</b> {cnpj}
               </p>
               <p>
-                <b>Salário:</b> R$ {salario.toFixed(2).replace('.', ',')}
+                <b>Email:</b> {email}
               </p>
               <p>
-                <b>Carga horária:</b> {cargaHoraria} horas semanais
+                <b>Telefone</b> {telefone}
               </p>
-              <p>
-                <b>Descrição:</b> {descricao}
-              </p>
-
-              <button onClick={redirect(id)}>candidatar-me</button>
             </li>
           ))}
         </ul>
@@ -47,6 +42,33 @@ const StyledWrapper = styled.div`
   h1 {
     font-weight: 400;
     font-size: 1.75em;
+  }
+
+  .row {
+    line-height: 3;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    span {
+      font-size: 1.5em;
+    }
+
+    a {
+      margin-left: 1em;
+      font-size: 1em;
+      cursor: pointer;
+      background-color: #123b72;
+      color: white;
+      padding: 0 2em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 4px;
+      box-shadow: none;
+      text-decoration: none;
+      display: inline-block;
+    }
   }
 
   ul {

@@ -7,21 +7,36 @@ import Shell from '../components/Shell';
 import Board from '../components/Board';
 
 function Page() {
-  const jobs = useSelector(state => [
-    ...state.jobs.data
-      .slice(0, 4)
-      .map(job => ({ ...job, to: '/jobs/' + job.id })),
-    {
-      id: 'kkkkkkkolokinhomeu',
-      title: 'Ver todas as vagas',
-      company: { name: '...' },
-      to: '/jobs',
-    },
-  ]);
+  const contratantes = useSelector(state => state.contratantes);
+
+  const jobs = useSelector(state => {
+    return [
+      ...state.jobs.slice(0, 4).map(job => {
+        const company = state.contratantes.find(c => c.cnpj === job.cnpj);
+
+        return {
+          ...job,
+          to: '/jobs/' + job.id,
+          company: (company && company.nome) || '...',
+        };
+      }),
+      {
+        id: 'kkkkkkkolokinhomeu',
+        nome: 'Ver todas as vagas',
+        company: '...',
+        to: '/jobs',
+      },
+    ];
+  });
 
   return (
     <Shell>
       <StyledWrapper>
+        <div className="row">
+          <div />
+          <Link to="/contratantes">Contratantes</Link>
+        </div>
+
         <Board content={jobs} className="board" />
 
         <div className="row">
@@ -44,10 +59,10 @@ const StyledWrapper = styled.div`
 
     span {
       font-size: 1.5em;
-      margin-right: 1em;
     }
 
     a {
+      margin-left: 1em;
       font-size: 1em;
       cursor: pointer;
       background-color: #123b72;
